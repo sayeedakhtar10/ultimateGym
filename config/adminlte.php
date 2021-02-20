@@ -243,7 +243,7 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Pages',
+            'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
@@ -259,11 +259,6 @@ return [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'Generate_Report',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-pencil',
         ],
         [
             'text'    => 'multilevel',
