@@ -1,0 +1,15 @@
+fieldset.form-border {
+    
+    border:  solid 1px #d4d8db !important;
+    margin-top: 7.5px;
+    margin-bottom:7.5px;
+    padding: 10px 10px 10px 10px;
+    border-bottom: none;
+  }
+  
+  legend.form-border {
+    width: auto !important;
+    border: none;
+    font-size: 18px; 
+   margin-left:25px;
+  }
