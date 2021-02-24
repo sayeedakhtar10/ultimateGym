@@ -261,6 +261,11 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
+            'text' => 'Registration',
+            'url'  => 'admin/settings',
+            'icon' => 'fab fa-fw fa-black-tie',
+        ],
+        [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
