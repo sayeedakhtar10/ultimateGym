@@ -9,6 +9,7 @@
 @stop
 
 @section('content')
+
 <div class="row">
     <div class="col-lg-offset-2 col-md-8">
         @if (session('status_success'))
@@ -88,6 +89,41 @@
                         @endif
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 control-label" for="photo">Upload Photograph <span class="text-danger">*</span> :</label>
+                    <div class="col-sm-6">
+                        <div class="radio">
+                            <label for="radios-4">
+                                <input type="radio" name="photo" id="radios-mu" value="Male">
+                                Manual Upload
+                            </label>&nbsp;&nbsp;
+                            <label for="radios-5">
+                                <input type="radio" name="photo" id="radios-wb" value="Female">
+                                Using Webcam
+                            </label>&nbsp;&nbsp;
+                        </div>
+                        @if ($errors->has('photo'))
+                        <span class="text-danger">
+                            <strong>{{ $errors->first('photo') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+                <!--Camera Space-->
+                <div class="form-group row">
+                    <label class="col-sm-4 control-label" for="photo">Upload Photograph <span class="text-danger">*</span> :</label>
+                    <div class="col-sm-6">
+                        <div id="my_camera"></div>
+                        <div id="results"></div>
+                        <input type=button value="Configure" onClick="configure()">
+                        <input type=button value="Take Snapshot" onClick="take_snapshot()">
+                        <input type=button value="Save Snapshot" onClick="saveSnap()">
+                    </div>
+                </div>
+
+
+
                 <div class="form-group row">
                     <label class="col-sm-4 control-label" for="date_of_birth">Date of Birth<span class="text-danger">*</span> :</label>
                     <div class="col-sm-6">
@@ -214,101 +250,53 @@
     </div>
 </div>
 
-
-<div id="my_photo_booth">
-		<div id="my_camera"></div>
-		
-		<!-- First, include the Webcam.js JavaScript Library -->
-        <script src="{{ asset('js/webCam/webcam.min.js') }}"></script>		
-
-		<!-- Configure a few settings and attach camera -->
-		<script language="JavaScript">
-			Webcam.set({
-				// live preview size
-				width: 320,
-				height: 240,
-				
-				// device capture size
-				dest_width: 640,
-				dest_height: 480,
-				
-				// final cropped size
-				crop_width: 480,
-				crop_height: 480,
-				
-				// format and quality
-				image_format: 'jpeg',
-				jpeg_quality: 90,
-				
-				// flip horizontal (mirror mode)
-				flip_horiz: true
-			});
-			Webcam.attach( '#my_camera' );
-		</script>
-		
-		<!-- A button for taking snaps -->
-		<form>
-			<div id="pre_take_buttons">
-				<!-- This button is shown before the user takes a snapshot -->
-				<input type=button value="Take Snapshot" onClick="preview_snapshot()">
-			</div>
-			<div id="post_take_buttons" style="display:none">
-				<!-- These buttons are shown after a snapshot is taken -->
-				<input type=button value="&lt; Take Another" onClick="cancel_preview()">
-				<input type=button value="Save Photo &gt;" onClick="save_photo()" style="font-weight:bold;">
-			</div>
-		</form>
-	</div>
-	
-	<div id="results" style="display:none">
-		<!-- Your captured image will appear here... -->
-	</div>
-	
+    <script src="{{ asset('js/webCam/webcam.min.js') }}"></script>
 	<!-- Code to handle taking the snapshot and displaying it locally -->
 	<script language="JavaScript">
+		
+		// Configure a few settings and attach camera
+		function configure(){
+            $('#my_camera').show();
+			Webcam.set({
+				width: 240,
+				height: 160,
+				image_format: 'jpeg',
+				jpeg_quality: 90
+			});
+			Webcam.attach( '#my_camera' );
+		}
+		// A button for taking snaps
+		
+
 		// preload shutter audio clip
 		var shutter = new Audio();
 		shutter.autoplay = false;
 		shutter.src = navigator.userAgent.match(/Firefox/) ? 'shutter.ogg' : 'shutter.mp3';
-		
-		function preview_snapshot() {
+
+		function take_snapshot() {
 			// play sound effect
-			try { shutter.currentTime = 0; } catch(e) {;} // fails in IE
 			shutter.play();
-			
-			// freeze camera so user can preview current frame
-			Webcam.freeze();
-			
-			// swap button sets
-			document.getElementById('pre_take_buttons').style.display = 'none';
-			document.getElementById('post_take_buttons').style.display = '';
-		}
-		
-		function cancel_preview() {
-			// cancel preview freeze and return to live camera view
-			Webcam.unfreeze();
-			
-			// swap buttons back to first set
-			document.getElementById('pre_take_buttons').style.display = '';
-			document.getElementById('post_take_buttons').style.display = 'none';
-		}
-		
-		function save_photo() {
-			// actually snap photo (from preview freeze) and display it
+            $('#my_camera').hide();
+			// take snapshot and get image data
 			Webcam.snap( function(data_uri) {
 				// display results in page
 				document.getElementById('results').innerHTML = 
-					'<h2>Here is your large, cropped image:</h2>' + 
-					'<img src="'+data_uri+'"/><br/></br>' + 
-					'<a href="'+data_uri+'" target="_blank">Open image in new window...</a>';
-				
-				// shut down camera, stop capturing
-				Webcam.reset();
-				
-				// show results, hide photo booth
-				document.getElementById('results').style.display = '';
-				document.getElementById('my_photo_booth').style.display = 'none';
+					'<img id="imageprev" src="'+data_uri+'"/>';
 			} );
+
+			Webcam.reset();
+		}
+
+		function saveSnap(){
+			// Get base64 value from <img id='imageprev'> source
+			var base64image =  document.getElementById("imageprev").src;
+
+			 Webcam.upload( base64image, 'upload.php', function(code, text) {
+				 console.log('Save successfully');
+				 //console.log(text);
+            });
+
 		}
 	</script>
+
 @stop

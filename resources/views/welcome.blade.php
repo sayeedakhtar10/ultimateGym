@@ -989,7 +989,18 @@
 	<!-- Main -->
 	<script src="js/main.js"></script>
 
-	
+
+
+
+
+
+	@if($errors->has('email') || $errors->has('password'))
+	<script type="text/javascript">
+		$(window).on('load', function() {
+			$('#myModal').modal('show');
+		});
+	</script>
+	@endif
 	<!-- Modal HTML -->
 	<div id="myModal" class="modal fade">
 		<div class="modal-dialog modal-login">
@@ -1004,6 +1015,11 @@
 						<div class="form-group">
 							<label>Username</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+							@error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 						</div>
 						<div class="form-group">
 							<div class="clearfix">
@@ -1015,6 +1031,11 @@
                                 @endif								
 							</div>						
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+							@error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 						</div>
 					</div>
 					<div class="modal-footer justify-content-between">
@@ -1024,8 +1045,8 @@
 				</form>
 			</div>
 		</div>
-	</div>     
-	
+	</div>    
+
 	</body>
 </html>
 

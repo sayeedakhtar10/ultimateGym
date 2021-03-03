@@ -17,3 +17,9 @@ fieldset.form-border {
   .navbar-color{
     background-color: #F85A16;
   }
+
+  #my_camera{
+      width: 220px;
+      height: 140px;
+      border: 1px solid black;
+  }
