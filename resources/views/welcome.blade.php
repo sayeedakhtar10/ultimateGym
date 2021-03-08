@@ -95,7 +95,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-6">
-						<div id="fh5co-logo"><a href="index.html"><!--ULTIMATE FITNESS GYM<span>.</span>--></a></div>
+						<div id="fh5co-logo"><a href="index.html">ULTIMATE FITNESS GYM<span>.</span></a></div>
 					</div>
 					<div class="col-xs-6 text-right menu-1">
 						<ul>
@@ -118,7 +118,7 @@
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
-							<!--<h1>ULTIMATE FITNESS GYM</h1>-->
+							<h1>ULTIMATE FITNESS GYM</h1>
 							<h2>Make it a lifestyle, not a duty</h2>
 							<!--<p><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn btn-primary popup-vimeo">Watch Our Video</a></p>-->
 						</div>

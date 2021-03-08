@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 Route::get('/admin','AdminController@index');
 
-Auth::routes();
+//Auth::routes();
+Auth::routes(['register' => false]);
 
-//Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home','AdminController@index');
+Route::get('/home','HomeController@index')->name('home');
+Route::get('/registration','AdminController@registration')->name('registration');
+Route::post('/create_applicant','AdminController@createApplicant')->name('admin.createApplicant');

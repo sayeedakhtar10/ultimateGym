@@ -270,7 +270,7 @@ return [
         ],
         [
             'text' => 'Registration',
-            'url'  => 'admin/settings',
+            'url'  => 'registration',
             'icon' => 'fab fa-fw fa-black-tie',
         ],
         [

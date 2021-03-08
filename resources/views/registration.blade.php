@@ -4,7 +4,7 @@
 
 @section('content_header')
 <div class="pen-title">
-    <!--<h1><b>ULTIMATE FITNESS GYM</b></h1>-->
+    <h1><b>ULTIMATE FITNESS GYM</b></h1>
 </div>
 @stop
 
@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-lg-offset-2 col-md-8">
-        @if (session('status_success'))
+        @if (session('status_success'))<h3>{!! session('status_success') !!}</h3>
         <script>
             bootbox.alert({
                 message: "<h3>{!! session('status_success') !!}</h3>",
@@ -28,7 +28,7 @@
         @endif
         <!-- form start --></br>
         <span class="alert-info"><b>NOTE:</b> Fields with asterik mark (<span class="text-danger">*</span>) is mandatory. </span>
-        <form method="post" action="{{url('save_project')}}" name="create_project" id="create_project" enctype="multipart/form-data">
+        <form method="post" action="{{route('admin.createApplicant')}}" name="create_project" id="create_project" enctype="multipart/form-data">
             {!!csrf_field()!!}
             <fieldset class="form-border">
                 <legend class="form-border"><span class="label label-info">APPLICANT DETAILS</span></legend>
@@ -95,11 +95,11 @@
                     <div class="col-sm-6">
                         <div class="radio">
                             <label for="radios-4">
-                                <input type="radio" name="photo" id="radios-mu" value="Male">
+                                <input type="radio" name="photo" id="radios-mu" value="manual">
                                 Manual Upload
                             </label>&nbsp;&nbsp;
                             <label for="radios-5">
-                                <input type="radio" name="photo" id="radios-wb" value="Female">
+                                <input type="radio" name="photo" id="radios-wb" value="webCam">
                                 Using Webcam
                             </label>&nbsp;&nbsp;
                         </div>
@@ -111,8 +111,23 @@
                     </div>
                 </div>
                 <!--Camera Space-->
-                <div class="form-group row">
-                    <label class="col-sm-4 control-label" for="photo">Upload Photograph <span class="text-danger">*</span> :</label>
+
+                <div class="form-group row" id="manual_upload">
+                    <label class="col-sm-4 control-label" for="photograph">Upload Manually :<br>
+                    </label>
+                    <div class="col-sm-6">
+                        <input id="photograph" name="photograph" class="input-file" type="file">
+                        <p class="text text-danger" id="file_size_message"></p>
+
+                        @foreach ($errors->get('photograph') as $message)
+                        <span class="text-danger">{!! $message !!}</span>
+                        @endforeach
+
+                    </div>
+                </div>
+
+                <div class="form-group row" id="webcam_upload">
+                    <label class="col-sm-4 control-label" for="photo">Upload Using Webcam <span class="text-danger">*</span> :</label>
                     <div class="col-sm-6">
                         <div id="my_camera"></div>
                         <div id="results"></div>
@@ -162,17 +177,17 @@
                 <legend class="form-border"><span class="label label-info">MEDICAL QUESTIONAIRES</span></legend>
                 <!-- Multiple Checkboxes -->
                 <div class="form-group row">
-                    <label class="col-sm-4 control-label" for="checkboxes">Do you have any one of the following?</label>
+                    <label class="col-sm-4 control-label" for="section1">Do you have any one of the following?</label>
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label for="checkboxes-0">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-0" value="Heart Disease">
+                                <input type="checkbox" name="section1" id="checkboxes-0" value="Heart Disease">
                                 Heart Disease
                             </label>
                         </div>
                         <div class="checkbox">
                             <label for="checkboxes-1">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-1" value="Diabetes">
+                                <input type="checkbox" name="section1" id="checkboxes-1" value="Diabetes">
                                 Diabetes
                             </label>
                         </div>
@@ -180,13 +195,13 @@
                     <div class="col-sm-4">
                         <div class="checkbox">
                             <label for="checkboxes-2">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-2" value="Dizziness">
+                                <input type="checkbox" name="section1" id="checkboxes-2" value="Dizziness">
                                 High/Low Blood Pressure
                             </label>
                         </div>
                         <div class="checkbox">
                             <label for="checkboxes-3">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-3" value="High/Low Blood Pressure">
+                                <input type="checkbox" name="section1" id="checkboxes-3" value="High/Low Blood Pressure">
                                 Dizziness
                             </label>
                         </div>
@@ -194,13 +209,13 @@
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label for="checkboxes-4">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-4" value="Asthma">
+                                <input type="checkbox" name="section1" id="checkboxes-4" value="Asthma">
                                 Asthma
                             </label>
                         </div>
                         <div class="checkbox">
                             <label for="checkboxes-5">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-5" value="Arthritis">
+                                <input type="checkbox" name="section1" id="checkboxes-5" value="Arthritis">
                                 Arthritis
                             </label>
                         </div>
@@ -208,17 +223,17 @@
                 </div>
                 <!-- Multiple Checkboxes -->
                 <div class="form-group row">
-                    <label class="col-sm-4 control-label" for="checkboxes">Do you have any problems/ injuries in the following body parts?</label>
+                    <label class="col-sm-4 control-label" for="section2">Do you have any problems/ injuries in the following body parts?</label>
                     <div class="col-sm-4">
                         <div class="checkbox">
                             <label for="checkboxes-6">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-6" value="Lower Back">
+                                <input type="checkbox" name="section2" id="checkboxes-6" value="Lower Back">
                                 Lower Back
                             </label>
                         </div>
                         <div class="checkbox">
                             <label for="checkboxes-7">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-7" value="Neck">
+                                <input type="checkbox" name="section2" id="checkboxes-7" value="Neck">
                                 Neck
                             </label>
                         </div>
@@ -226,20 +241,20 @@
                     <div class="col-sm-4">
                         <div class="checkbox">
                             <label for="checkboxes-8">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-8" value="Shoulders">
+                                <input type="checkbox" name="section2" id="checkboxes-8" value="Shoulders">
                                 Shoulders
                             </label>
                         </div>
                         <div class="checkbox">
                             <label for="checkboxes-9">
-                                <input type="checkbox" name="checkboxes" id="checkboxes-9" value="Hips/Pelvis">
+                                <input type="checkbox" name="section2" id="checkboxes-9" value="Hips/Pelvis">
                                 Hips/Pelvis
                             </label>
                         </div>
                     </div>
                 </div>
             </fieldset>
-            
+
             <div class="form-group row">
                 <label class="col-sm-3 control-label" for="Save">&nbsp;</label>
                 <div class="col-sm-6">
@@ -250,53 +265,101 @@
     </div>
 </div>
 
-    <script src="{{ asset('js/webCam/webcam.min.js') }}"></script>
-	<!-- Code to handle taking the snapshot and displaying it locally -->
-	<script language="JavaScript">
-		
-		// Configure a few settings and attach camera
-		function configure(){
-            $('#my_camera').show();
-			Webcam.set({
-				width: 240,
-				height: 160,
-				image_format: 'jpeg',
-				jpeg_quality: 90
-			});
-			Webcam.attach( '#my_camera' );
-		}
-		// A button for taking snaps
-		
+<script src="{{ asset('js/webCam/webcam.min.js') }}"></script>
+<!-- Code to handle taking the snapshot and displaying it locally -->
+<script language="JavaScript">
+    // Configure a few settings and attach camera
+    function configure() {
+        $('#my_camera').show();
+        $('#results').hide();
+        Webcam.set({
+            width: 240,
+            height: 160,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
+        Webcam.attach('#my_camera');
+    }
+    // A button for taking snaps
 
-		// preload shutter audio clip
-		var shutter = new Audio();
-		shutter.autoplay = false;
-		shutter.src = navigator.userAgent.match(/Firefox/) ? 'shutter.ogg' : 'shutter.mp3';
 
-		function take_snapshot() {
-			// play sound effect
-			shutter.play();
-            $('#my_camera').hide();
-			// take snapshot and get image data
-			Webcam.snap( function(data_uri) {
-				// display results in page
-				document.getElementById('results').innerHTML = 
-					'<img id="imageprev" src="'+data_uri+'"/>';
-			} );
+    // preload shutter audio clip
+    var shutter = new Audio();
+    shutter.autoplay = false;
+    shutter.src = navigator.userAgent.match(/Firefox/) ? 'shutter.ogg' : 'shutter.mp3';
 
-			Webcam.reset();
-		}
+    function take_snapshot() {
+        // play sound effect
+        shutter.play();
+        $('#my_camera').hide();
+        $('#results').show();
+        // take snapshot and get image data
+        Webcam.snap(function(data_uri) {
+            // display results in page
+            document.getElementById('results').innerHTML =
+                '<img id="imageprev" src="' + data_uri + '"/>';
+        });
 
-		function saveSnap(){
-			// Get base64 value from <img id='imageprev'> source
-			var base64image =  document.getElementById("imageprev").src;
+        Webcam.reset();
+    }
 
-			 Webcam.upload( base64image, 'upload.php', function(code, text) {
-				 console.log('Save successfully');
-				 //console.log(text);
+    function saveSnap() {
+        // Get base64 value from <img id='imageprev'> source
+        var base64image = document.getElementById("imageprev").src;
+
+        Webcam.upload(base64image, 'upload.php', function(code, text) {
+            console.log('Save successfully');
+            //console.log(text);
+        });
+
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var radioValue = $("input[name='photo']:checked").val();
+        if(radioValue=="manual"){
+            $('#manual_upload').show();
+            $('#webcam_upload').hide();
+        }else if(radioValue=="webCam"){
+            $('#manual_upload').hide();
+            $('#webcam_upload').show();
+            Webcam.set({
+                width: 240,
+                height: 160,
+                image_format: 'jpeg',
+                jpeg_quality: 90
             });
+            Webcam.attach('#my_camera');
+            Webcam.reset();
+        }else{
+            $('#manual_upload').hide();
+            $('#webcam_upload').hide();
+            Webcam.reset();
+        }
 
-		}
-	</script>
+        $('input[type=radio][name=photo]').change(function() {
+            if (this.value == 'manual'){
+                $('#manual_upload').show();
+                $('#webcam_upload').hide();
+                Webcam.reset();
+            }else if (this.value == 'webCam'){
+                $('#manual_upload').hide();
+                $('#webcam_upload').show();
+                Webcam.set({
+                    width: 240,
+                    height: 160,
+                    image_format: 'jpeg',
+                    jpeg_quality: 90
+                });
+                Webcam.attach('#my_camera');
+                Webcam.reset();
+            }else{
+                $('#manual_upload').hide();
+                $('#webcam_upload').hide();
+                Webcam.reset();
+            }
+        });
+    });
 
+</script>
 @stop
