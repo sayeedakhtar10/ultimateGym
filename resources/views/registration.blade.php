@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard:: Ultimate Fitness Gym')
+<!--@section('title', 'Blank')-->
 
 @section('content_header')
 <div class="pen-title">
-    <h1><b>ULTIMATE FITNESS GYM</b></h1>
+    <h1><b><!--ULTIMATE FITNESS GYM--></b></h1>
 </div>
 @stop
 
@@ -181,13 +181,13 @@
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label for="checkboxes-0">
-                                <input type="checkbox" name="section1" id="checkboxes-0" value="Heart Disease">
+                                <input type="checkbox" name="section1[]" id="checkboxes-0" value="Heart Disease">
                                 Heart Disease
                             </label>
                         </div>
                         <div class="checkbox">
                             <label for="checkboxes-1">
-                                <input type="checkbox" name="section1" id="checkboxes-1" value="Diabetes">
+                                <input type="checkbox" name="section1[]" id="checkboxes-1" value="Diabetes">
                                 Diabetes
                             </label>
                         </div>
@@ -195,13 +195,13 @@
                     <div class="col-sm-4">
                         <div class="checkbox">
                             <label for="checkboxes-2">
-                                <input type="checkbox" name="section1" id="checkboxes-2" value="Dizziness">
+                                <input type="checkbox" name="section1[]" id="checkboxes-2" value="Dizziness">
                                 High/Low Blood Pressure
                             </label>
                         </div>
                         <div class="checkbox">
                             <label for="checkboxes-3">
-                                <input type="checkbox" name="section1" id="checkboxes-3" value="High/Low Blood Pressure">
+                                <input type="checkbox" name="section1[]" id="checkboxes-3" value="High/Low Blood Pressure">
                                 Dizziness
                             </label>
                         </div>
@@ -209,13 +209,13 @@
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label for="checkboxes-4">
-                                <input type="checkbox" name="section1" id="checkboxes-4" value="Asthma">
+                                <input type="checkbox" name="section1[]" id="checkboxes-4" value="Asthma">
                                 Asthma
                             </label>
                         </div>
                         <div class="checkbox">
                             <label for="checkboxes-5">
-                                <input type="checkbox" name="section1" id="checkboxes-5" value="Arthritis">
+                                <input type="checkbox" name="section1[]" id="checkboxes-5" value="Arthritis">
                                 Arthritis
                             </label>
                         </div>
@@ -227,13 +227,13 @@
                     <div class="col-sm-4">
                         <div class="checkbox">
                             <label for="checkboxes-6">
-                                <input type="checkbox" name="section2" id="checkboxes-6" value="Lower Back">
+                                <input type="checkbox" name="section2[]" id="checkboxes-6" value="Lower Back">
                                 Lower Back
                             </label>
                         </div>
                         <div class="checkbox">
                             <label for="checkboxes-7">
-                                <input type="checkbox" name="section2" id="checkboxes-7" value="Neck">
+                                <input type="checkbox" name="section2[]" id="checkboxes-7" value="Neck">
                                 Neck
                             </label>
                         </div>
@@ -241,13 +241,13 @@
                     <div class="col-sm-4">
                         <div class="checkbox">
                             <label for="checkboxes-8">
-                                <input type="checkbox" name="section2" id="checkboxes-8" value="Shoulders">
+                                <input type="checkbox" name="section2[]" id="checkboxes-8" value="Shoulders">
                                 Shoulders
                             </label>
                         </div>
                         <div class="checkbox">
                             <label for="checkboxes-9">
-                                <input type="checkbox" name="section2" id="checkboxes-9" value="Hips/Pelvis">
+                                <input type="checkbox" name="section2[]" id="checkboxes-9" value="Hips/Pelvis">
                                 Hips/Pelvis
                             </label>
                         </div>
