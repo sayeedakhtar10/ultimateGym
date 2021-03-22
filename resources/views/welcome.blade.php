@@ -10,12 +10,12 @@
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="freehtml5.co" />
 
-	<!-- 
+	<!--
 	//////////////////////////////////////////////////////
 
-	FREE HTML5 TEMPLATE 
+	FREE HTML5 TEMPLATE
 	DESIGNED & DEVELOPED by FreeHTML5.co
-		
+
 	Website: 		http://freehtml5.co/
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
@@ -36,7 +36,7 @@
 	<meta name="twitter:card" content="" />
 
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -60,18 +60,78 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	<link rel="stylesheet" href="css/login-modal.css">	
+	<link rel="stylesheet" href="css/login-modal.css">
+
+	<style>
+	.my-owl-carousel {
+		height: 600px;
+		margin-bottom: 1rem;
+	}
+	.my-owl-carousel .item {
+		height: 500px; 
+	}
+	.fh5co-nav-toggle {
+		z-index: 21;
+	}
+
+
+	@media (max-width: 400px) {
+		.fh5co-nav-toggle {
+			top: 80px;
+		}
+
+		#myModal {
+			max-width: 98%;
+		}
+		#myModal .modal-header,
+		#myModal .modal-body,
+		#myModal .modal-footer {
+			margin-right: 5rem;
+		}
+
+	}
+	@media (min-width: 576px) {
+		.fh5co-nav-toggle {
+			top: 40px;
+		}
+	}
+	@media (max-width: 576px) {
+		.top-nav p {
+			padding-right: 0 !important;
+			border: none !important;
+		}
+		.top-nav ul {
+			margin-right: 0;
+		}
+
+		/* Carousel */
+		.my-owl-carousel {
+			height: 250px;
+			margin-bottom: 3rem;
+		}
+		.my-owl-carousel .item {
+			height: 250px; 
+		}
+
+	}
+	</style>
+
+
+
+
+
+
 	</head>
 	<body>
 	<div class="fh5co-loader"></div>
-	
+
 	<div id="page">
 	<nav class="fh5co-nav" role="navigation">
 		<div class="top">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-12 text-right">
-						<p class="num">Call: +01 123 456 7890</p>
+					<div class="col-xs-12 text-right top-nav">
+						<p class="num">Call: +01 123 456 78909999</p>
 						<ul class="fh5co-social">
 							<li><a href="#"><i class="icon-twitter"></i></a></li>
 							<li><a href="#"><i class="icon-dribbble"></i></a></li>
@@ -80,12 +140,12 @@
 								@auth
                                     <li><a href="{{ url('/home') }}" class="btn btn-primary">Home</a></li>
 								@else
-                                    <li><a href="#myModal" class="btn btn-primary" data-toggle="modal">Log In</a></li>	
+                                    <li><a href="#myModal" class="btn btn-primary" data-toggle="modal">Log In</a></li>
 									@if (Route::has('register'))
 									<li><a href="{{ route('register') }}" class="btn btn-primary">Register</a></li>
 									@endif
 								@endauth
-							@endif				
+							@endif
 						</ul>
 					</div>
 				</div>
@@ -106,12 +166,12 @@
 						</ul>
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 	</nav>
 
-	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/img_bg_2.jpg);" data-stellar-background-ratio="0.5">
+	<!-- <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/img_bg_2.jpg);" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -120,13 +180,44 @@
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
 							<h1>ULTIMATE FITNESS GYM</h1>
 							<h2>Make it a lifestyle, not a duty</h2>
-							<!--<p><a href="https://vimeo.com/channels/staffpicks/93951774" class="btn btn-primary popup-vimeo">Watch Our Video</a></p>-->
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</header>
+	</header> -->
+
+
+
+
+	<div class="my-owl-carousel">
+		<div class="item" style="width:100vw; border: 1px solid red; background-color: red">
+			<h4>1</h4>
+		</div>
+		<div class="item" style="width:100vw; border: 1px solid green; background-color: green">
+			<h4>2</h4>
+		</div>
+		<div class="item" style="width:100vw; border: 1px solid blue; background-color: blue">
+			<h4>3</h4>
+		</div>
+		<div class="item" style="width:100vw; border: 1px solid yellow; background-color: yellow">
+			<h4>4</h4>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<div id="fh5co-services" class="fh5co-bg-section">
 		<div class="container">
@@ -222,7 +313,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="fh5co-schedule" class="fh5co-bg" style="background-image: url(images/img_bg_1.jpg);">
 		<div class="container">
 			<div class="row">
@@ -232,7 +323,7 @@
 			</div>
 
 			<div class="row animate-box">
-				
+
 				<div class="fh5co-tabs">
 					<ul class="fh5co-tab-nav">
 						<li class="active"><a href="#" data-tab="1"><span class="visible-xs">S</span><span class="hidden-xs">Sunday</span></a></li>
@@ -746,7 +837,7 @@
 							</a>
 						</li>
 
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-4.jpg); "> 
+						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-4.jpg); ">
 							<a href="#">
 								<div class="case-studies-summary">
 									<span>Web Design</span>
@@ -778,12 +869,12 @@
 								</div>
 							</a>
 						</li>
-					</ul>		
+					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="fh5co-testimonial" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row animate-box">
@@ -870,7 +961,7 @@
 							<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 							<a href="#" class="btn btn-primary">Read More</a>
-						</div> 
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4">
@@ -882,7 +973,7 @@
 							<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 							<a href="#" class="btn btn-primary">Read More</a>
-						</div> 
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4">
@@ -894,7 +985,7 @@
 							<span class="comment"><a href="">21<i class="icon-speech-bubble"></i></a></span>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 							<a href="#" class="btn btn-primary">Read More</a>
-						</div> 
+						</div>
 					</div>
 				</div>
 			</div>
@@ -947,7 +1038,7 @@
 			<div class="row copyright">
 				<div class="col-md-12 text-center">
 					<p>
-						<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small> 
+						<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
 						<small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
 					</p>
 					<p>
@@ -968,7 +1059,7 @@
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 	</div>
-	
+
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
@@ -1007,11 +1098,11 @@
 			<div class="modal-content">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-					<div class="modal-header">				
+					<div class="modal-header">
 						<h4 class="modal-title">-Admin Login-</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">				
+					<div class="modal-body">
 						<div class="form-group">
 							<label>Username</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -1028,8 +1119,8 @@
                                     <a class="float-right text-muted" href="{{ route('password.request') }}">
                                     <small>Forgot?</small>
                                     </a>
-                                @endif								
-							</div>						
+                                @endif
+							</div>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 							@error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -1045,8 +1136,32 @@
 				</form>
 			</div>
 		</div>
-	</div>    
+	</div>
+
+
+
+	<script>
+		$(document).ready(function(){
+
+			$(".my-owl-carousel").owlCarousel({
+				margin:10,
+				loop:true,
+				autoWidth:true,
+				items: 1,
+				mouseDrag: true,
+				touchDrag: true,
+				nav: false,
+				autoplay: true,
+				autoplayHoverPause: true,
+				dots: false,
+				autoplayTimeout: 3000,
+			});
+
+		});
+
+	</script>
+
+
 
 	</body>
 </html>
-
